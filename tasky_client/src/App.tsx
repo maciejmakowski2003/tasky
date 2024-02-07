@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthPage from "./components/AuthComponents/AuthPage"
 import LoginCard from "./components/AuthComponents/LoginCard"
 import SignUpCard from "./components/AuthComponents/SignUpCard";
-import NavbBar from "./components/MainPageComponents/NavbBar";
+import Home from "./components/MainPageComponents/Home";
 
 function App() {
   return (
-    <BrowserRouter basename="/tasky">
+    <BrowserRouter>
       <Routes>
 
         <Route path="login" element={
@@ -22,7 +22,11 @@ function App() {
           </AuthPage>
         } />
 
-        <Route path="*" element={<NavbBar />} />
+        <Route path="*" element={
+          <div>
+            <Home />
+          </div>
+        } />
 
       </Routes>
     </BrowserRouter>
