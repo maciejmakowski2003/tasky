@@ -16,7 +16,7 @@ type MenuOptions = {
 
 function NavBar() {
     const menuOptions: MenuOptions = {
-        "/tasks": <IoHomeOutline size={30} />,
+        "/": <IoHomeOutline size={30} />,
         "/account": < MdOutlineAccountCircle size={30} />,
     }
     return (

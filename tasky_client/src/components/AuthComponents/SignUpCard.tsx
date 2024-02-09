@@ -44,7 +44,7 @@ function SignUpCard() {
           </CardContent>
           <CardFooter className="flex justify-center flex-wrap">
             <Button className="w-[400px] hover:bg-purple-700">Sign Up</Button>
-            <CardDescription>Already signed up? <a href="/tasky/login" className="text-purple-500 hover:underline">Sign in</a></CardDescription>
+            <CardDescription>Already signed up? <a href="/login" className="text-purple-500 hover:underline">Sign in</a></CardDescription>
           </CardFooter>
         </Card>
       )

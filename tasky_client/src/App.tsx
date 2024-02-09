@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthPage from "./components/AuthComponents/AuthPage"
 import LoginCard from "./components/AuthComponents/LoginCard"
 import SignUpCard from "./components/AuthComponents/SignUpCard";
-import Home from "./components/MainPageComponents/Home";
+import PageContent from "./components/PageComponents/PageContent";
+import NavBar from "./components/PageComponents/NavBar";
+import Home from "./components/HomeComponents/Home";
+import Tasks from "./components/YourTasks/Tasks";
 
 function App() {
   return (
@@ -24,7 +27,13 @@ function App() {
 
         <Route path="*" element={
           <div>
-            <Home />
+            <NavBar />
+            <PageContent>
+              <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/tasks/*" element={<Tasks />}/>                
+              </Routes>
+            </PageContent>
           </div>
         } />
 

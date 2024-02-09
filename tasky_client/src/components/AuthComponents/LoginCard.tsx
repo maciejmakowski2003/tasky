@@ -39,7 +39,7 @@ function LoginCard() {
           </CardContent>
           <CardFooter className="flex justify-center flex-wrap">
             <Button className="w-[400px] hover:bg-purple-700">Login</Button>
-            <CardDescription>Don't have account? <a href="/tasky/signup" className="text-purple-500 hover:underline">Sign up</a></CardDescription>
+            <CardDescription>Don't have account? <a href="/signup" className="text-purple-500 hover:underline">Sign up</a></CardDescription>
           </CardFooter>
         </Card>
       )
