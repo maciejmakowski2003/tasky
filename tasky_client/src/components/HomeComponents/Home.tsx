@@ -1,6 +1,6 @@
 import Chart from './Chart'
 import RecentlyAdded from './RecentlyAdded'
-import IncomingEvents from './IncomingEvents'
+import UpcomingEvents from './UpcomingEvents'
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
             </div>
             <Chart/>
         </div>
-        <IncomingEvents/>
+        <UpcomingEvents/>
     </div>
   )
 }

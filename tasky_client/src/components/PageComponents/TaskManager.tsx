@@ -12,6 +12,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineTaskAlt } from "react-icons/md";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { MdAddCircleOutline } from "react-icons/md";
+import { GrTableAdd } from "react-icons/gr";
 
 type MenuOptions = {
     [key: string]: ReactNode;
@@ -25,20 +26,26 @@ function TaskManager() {
         "/tasks": <div className="flex flex-row"><MdOutlineTaskAlt size={20} className="mr-5"/>Your tasks</div>,
         "/calendar": <div className="flex flex-row"><IoCalendarNumberOutline size={20} className="mr-5"/>Your calendar</div>,
         "/add-task": <div className="flex flex-row"><MdAddCircleOutline size={20} className="mr-5"/>Add task</div>,
+        "/add-event": <div className="flex flex-row"><GrTableAdd size={20} className="mr-5"/>Add event</div>,
     }
 
     const navigate = useNavigate()
 
     const pathName = window.location.pathname.split("/")[1]
     const [value, setValue] = useState<string>("/" + pathName)
+    if (value == "/tasks-done") {
+        setValue("/tasks")
+    }
 
     const handleValueChange = (value: string) => {
         if(value == "") return
         setValue(value)
+        if (value === "/tasks") {
+            navigate(value + "/1")
+            return
+        }
         navigate(value)
-    }
-
-    
+    }    
 
     const handleLogOut = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()

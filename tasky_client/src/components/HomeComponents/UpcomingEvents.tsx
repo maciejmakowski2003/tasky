@@ -5,11 +5,11 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 
-function IncomingEvents() {
+function UpcomingEvents() {
   return (
     <Card className='w-[300px] h-[350px]'>
       <CardHeader>
-        <CardTitle className='flex justify-center'>Incoming events:</CardTitle>
+        <CardTitle className='flex justify-center'>Upcoming events:</CardTitle>
       </CardHeader>
       <CardContent>
         <div className='flex justify-center'>
@@ -20,4 +20,4 @@ function IncomingEvents() {
   )
 }
 
-export default IncomingEvents
+export default UpcomingEvents

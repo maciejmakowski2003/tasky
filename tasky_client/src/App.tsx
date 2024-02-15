@@ -6,7 +6,10 @@ import SignUpCard from "./components/AuthComponents/SignUpCard";
 import PageContent from "./components/PageComponents/PageContent";
 import NavBar from "./components/PageComponents/NavBar";
 import Home from "./components/HomeComponents/Home";
-import Tasks from "./components/YourTasks/Tasks";
+import AddTask from "./components/AddingForms/AddTask";
+import TasksPage from "./components/TasksComponents/TasksPage";
+import CalendarPage from "./components/CalendarComponents/CalendarPage";
+import SiteDoesNotExist from "./components/PageComponents/SiteDoesNotExist";
 
 function App() {
   return (
@@ -31,7 +34,11 @@ function App() {
             <PageContent>
               <Routes>
                 <Route path="/" element={<Home />}/>
-                <Route path="/tasks/*" element={<Tasks />}/>                
+                <Route path="/tasks/:id" element={<TasksPage />}/>                 
+                <Route path="/tasks-done/:id" element={<TasksPage />}/>
+                <Route path="/add-task" element={<AddTask />}/> 
+                <Route path="/calendar" element={<CalendarPage />} /> 
+                <Route path="*" element={<SiteDoesNotExist />} />           
               </Routes>
             </PageContent>
           </div>

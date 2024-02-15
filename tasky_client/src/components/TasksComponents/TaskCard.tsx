@@ -40,7 +40,7 @@ function TaskCard() {
         "delete": <MdOutlineDelete size={20} />,
     }
 
-    if(window.location.pathname == "/tasks/done") {
+    if(window.location.pathname.split("/")[1] == "tasks-done") {
         buttons["action"] = <IoMdReturnLeft size={20} />
     }
 
@@ -57,7 +57,7 @@ function TaskCard() {
                 </CardContent>
             </div>
             <CardFooter className="p-1 flex justify-between content-end">
-                <p className="text-xs">12/12/2022</p>
+                <p className="text-xs">Do it by: 12/12/2022</p>
                 <div className="flex flex-row">
                     {Object.keys(buttons).map((button) =>
                         <p key={button} id={button} className="hover:cursor-pointer text-purple-500" onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleClick(e)}>{buttons[button]}</p>)
