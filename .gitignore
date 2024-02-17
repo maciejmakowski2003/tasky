@@ -1,0 +1,26 @@
+#Logs
+tasky_client/logs
+tasky_client/*.log
+tasky_client/npm-debug.log*
+tasky_client/yarn-debug.log*
+tasky_client/yarn-error.log*
+tasky_client/pnpm-debug.log*
+tasky_client/lerna-debug.log*
+
+tasky_client/node_modules
+tasky_client/dist
+tasky_client/dist-ssr
+tasky_client/*.local
+
+# Editor directories and files
+tasky_client/.vscode/*
+tasky_client/!.vscode/extensions.json
+tasky_client/.idea
+tasky_client/.DS_Store
+tasky_client/*.suo
+tasky_client/*.ntvs*
+tasky_client/*.njsproj
+tasky_client/*.sln
+tasky_client/*.sw?
+
+tasky_client/README.md
