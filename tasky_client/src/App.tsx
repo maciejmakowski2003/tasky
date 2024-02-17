@@ -10,6 +10,7 @@ import AddTask from "./components/AddingForms/AddTask";
 import TasksPage from "./components/TasksComponents/TasksPage";
 import CalendarPage from "./components/CalendarComponents/CalendarPage";
 import SiteDoesNotExist from "./components/PageComponents/SiteDoesNotExist";
+import AddEvent from "./components/AddingForms/AddEvent";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
                 <Route path="/tasks-done/:id" element={<TasksPage />}/>
                 <Route path="/add-task" element={<AddTask />}/> 
                 <Route path="/calendar" element={<CalendarPage />} /> 
-                <Route path="*" element={<SiteDoesNotExist />} />           
+                <Route path="/add-event" element={<AddEvent />} /> 
+                <Route path="*" element={<SiteDoesNotExist />} />            
               </Routes>
             </PageContent>
           </div>

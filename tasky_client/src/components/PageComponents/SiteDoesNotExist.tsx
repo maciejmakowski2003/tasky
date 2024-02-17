@@ -2,7 +2,7 @@ import { Card, CardTitle, CardHeader } from "@/components/ui/card"
 
 function SiteDoesNotExist() {
   return (
-    <Card className="h-[100px]">
+    <Card className="w-fit h-fit">
         <CardHeader>
             <CardTitle>Site does not exist</CardTitle>
         </CardHeader>

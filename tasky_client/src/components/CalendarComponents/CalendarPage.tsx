@@ -23,21 +23,25 @@ function CalendarPage() {
             </Card>
 
             <Card className="w-[400px] h-fit flex flex-col items-center">
-                {date && (
+                {date ? (
+                    <div>
+                        <CardHeader>
+                            <CardTitle>{format(date,"PPP")}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                                <div>
+                                    <p>event 1</p>
+                                    <p>event 1</p>
+                                    <p>event 1</p>
+                                    <p>event 1</p>
+                                </div>
+                        </CardContent>
+                    </div>
+                ):(
                     <CardHeader>
-                        <CardTitle>{format(date,"PPP")}</CardTitle>
+                            <CardTitle>No events on that day ;((</CardTitle>
                     </CardHeader>
                 )}
-                <CardContent>
-                    {date && (
-                        <div>
-                            <p>event 1</p>
-                            <p>event 1</p>
-                            <p>event 1</p>
-                            <p>event 1</p>
-                        </div>
-                    )}
-                </CardContent>
             </Card>
         </div>
     )
