@@ -3,6 +3,7 @@ const cors = require('cors');
 const setHeaders = require('./middleware/setHeaders');
 const db = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -19,10 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(setHeaders);
 
-db.sequelize.sync({logging: false});
+db.sequelize.sync({force: true});
 
 //routes 
 app.use(authRoutes);
+app.use(taskRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);

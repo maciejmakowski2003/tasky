@@ -16,10 +16,26 @@ const sequelize = new Sequelize({
     logging: false
 });
 
+const User = require('../models/User')(sequelize);
+const Task = require('../models/Task')(sequelize);
+const Event = require('../models/Event')(sequelize);
+const Category = require('../models/Category')(sequelize);
+
+User.hasMany(Task, {foreignKey: 'userID'});
+Task.belongsTo(User, {foreignKey: 'userID'}); 
+
+User.hasMany(Event, {foreignKey: 'userID'});
+Event.belongsTo(User, {foreignKey: 'userID'});
+
+Category.hasMany(Task, {foreignKey: 'categoryID'});
+Task.belongsTo(Category, {foreignKey: 'categoryID'});
+
 const db = {
     Sequelize: Sequelize,
     sequelize: sequelize,
-    User: require('../models/User')(sequelize),
+    User: User,
+    Task: Task,
+    Event: Event,
 };
 
 module.exports = db;
