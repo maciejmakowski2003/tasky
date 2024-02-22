@@ -13,6 +13,7 @@ import { MdOutlineTaskAlt } from "react-icons/md";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { MdAddCircleOutline } from "react-icons/md";
 import { GrTableAdd } from "react-icons/gr";
+import { useAuth } from "@/context/AuthContext";
 
 type MenuOptions = {
     [key: string]: ReactNode;
@@ -20,6 +21,7 @@ type MenuOptions = {
 
 
 function TaskManager() {
+    const {logout} = useAuth()
 
     const menuOptions: MenuOptions = {
         "/": <div className="flex flex-row"><IoHomeOutline size={20} className="mr-5"/>Home</div>,
@@ -49,6 +51,7 @@ function TaskManager() {
 
     const handleLogOut = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
+        logout();
         navigate("/login")
     }
 

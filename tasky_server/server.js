@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(setHeaders);
 
-db.sequelize.sync({force: true});
+db.sequelize.sync({logging: false});
 
 //routes 
 app.use(authRoutes);
