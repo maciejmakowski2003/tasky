@@ -14,6 +14,7 @@ import DatePicker from "./DatePicker";
 import { format } from "date-fns"
 import Combobox from "./ComboBox";
 import './addingform.css'
+import { useAuth } from "@/context/AuthContext";
 
 function AddTask() {
     const [category, setCategory] = useState<string>("")

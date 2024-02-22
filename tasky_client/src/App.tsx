@@ -4,7 +4,7 @@ import Protected from "./components/ProtectedRoutes/Protected";
 import PageContent from "./components/PageComponents/PageContent";
 import NavBar from "./components/PageComponents/NavBar";
 import Home from "./components/HomeComponents/Home";
-import AddTask from "./components/AddingForms/AddTask";
+import AddTaskPage from "./components/AddingForms/AddTaskPage";
 import TasksPage from "./components/TasksComponents/TasksPage";
 import CalendarPage from "./components/CalendarComponents/CalendarPage";
 import SiteDoesNotExist from "./components/PageComponents/SiteDoesNotExist";
@@ -12,7 +12,7 @@ import AddEvent from "./components/AddingForms/AddEvent";
 import {useAuth} from "./context/AuthContext";
 
 function App() {
-  const {email, photo, token} = useAuth();
+  const {email} = useAuth();
   
   return (
     <Protected email={email}>
@@ -40,7 +40,7 @@ function App() {
 
           <Route path="/add-task" element={
             <PageContent>
-              <AddTask />
+              <AddTaskPage />
             </PageContent>
           }/>  
 

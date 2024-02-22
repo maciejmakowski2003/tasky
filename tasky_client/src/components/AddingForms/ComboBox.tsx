@@ -38,9 +38,9 @@ const categories = [
 interface ComboboxProps {
     category: string
     setCategory: React.Dispatch<React.SetStateAction<string>>
-    }
+}
  
-export function Combobox({ category, setCategory }: ComboboxProps) {
+export function Combobox({ category, setCategory}: ComboboxProps) {
   const [open, setOpen] = useState(false)
  
   return (

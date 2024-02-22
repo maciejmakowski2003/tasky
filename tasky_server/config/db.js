@@ -27,8 +27,8 @@ Task.belongsTo(User, {foreignKey: 'userID'});
 User.hasMany(Event, {foreignKey: 'userID'});
 Event.belongsTo(User, {foreignKey: 'userID'});
 
-Category.hasMany(Task, {foreignKey: 'categoryID'});
-Task.belongsTo(Category, {foreignKey: 'categoryID'});
+User.hasMany(Category, {foreignKey: 'userID'});
+Category.belongsTo(User, {foreignKey: 'userID'});
 
 const db = {
     Sequelize: Sequelize,
@@ -36,6 +36,7 @@ const db = {
     User: User,
     Task: Task,
     Event: Event,
+    Category: Category
 };
 
 module.exports = db;
