@@ -18,7 +18,6 @@ import { useAuth } from "@/context/AuthContext";
 import ErrorAlert from "../Alerts/ErrorAlert";
 import axios from "axios";
 import API_URL from "../../config"
-import { useNavigate } from "react-router";
 
 interface ComboboxProps {
     categories: {id: number, name: string, color: string, userID: number } []
@@ -30,7 +29,6 @@ function AddTask({categories}: ComboboxProps) {
     const [task, setTask] = useState<string>("")
     const [date, setDate] = useState<Date | undefined>(undefined);
     const [error, setError] = useState<string>("")
-    const navigate = useNavigate()
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
@@ -53,7 +51,7 @@ function AddTask({categories}: ComboboxProps) {
         .then((res) => {
             setError("")
             console.log(res.data)
-            navigate('/tasks/1')
+            window.location.reload()
         })
         .catch((err) => {
             setError(err.response.data.message)
