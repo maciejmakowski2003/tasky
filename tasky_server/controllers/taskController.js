@@ -1,10 +1,13 @@
-const {Task} = require('../config/db'); 
+const {Task, Category} = require('../config/db'); 
 
 const createTask = async (req, res) => {
     try {
-        const {category, color, name, doItUntil} = req.body;
+        const {categoryName, taskName, date} = req.body;
         const userID = req.userID;
-        const task = await Task.create({category, color, name, doItUntil, userID});
+        const category = await Category.findOne({where: {name: categoryName, userID}});
+        const doItUntil = new Date(date);
+        
+        const task = await Task.create({categoryID: category.id, name: taskName, doItUntil, userID});
         res.status(201).json(task);
     } catch (error) {
         res.status(500).json({message: error.message});

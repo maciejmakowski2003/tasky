@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const {secretKey} = require('../config/auth'); 
 
 const verifyToken = (req, res, next) => {
-    console.log('verifyToken middleware');  
     const token = req.headers['x-access-token'];
 
     if (!token) {

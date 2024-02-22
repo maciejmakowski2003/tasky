@@ -12,43 +12,49 @@ import { useState } from "react";
 import './addingform.css'
 import ErrorAlert from "../Alerts/ErrorAlert";
 import { useAuth } from "@/context/AuthContext";
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
 import axios from "axios";
 import API_URL from "../../config"
 
 function AddCategory() {
     const {token} = useAuth()
-    const [category, setCategory] = useState<string>("")
+    const [name, setName] = useState<string>("")
     const [error, setError] = useState<string>("")
-
+    const [color, setColor] = useColor("#561ecb");
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        if (!category) {
+        if (!name || !color.hex) {
             setError("Please fill the field.")
             return
         }
 
-        console.log(token)
-        
-        axios.post(API_URL + "add-category", {
-            name: category
-        }, {
+        const fd = new FormData();
+        fd.append("name", name);
+        fd.append("color", color.hex);
+
+        axios.post(API_URL + "add-category",fd,{
             headers: {
-                "x-access-token": `${token}`
+                "x-access-token": `${token}`,
+                "Content-Type": "application/json"
             }
         })
         .then((res) => {
-            console.log(res.data);
+            setError("")
+            console.log(res.data)
+            window.location.reload()
         })
         .catch((err) => {
-            console.log(err);
+            setError(err.response.data.message)
         });
     }
+
     return (
         <div className="ml-500">
             <Card className="w-[400px]">
                 {error && <ErrorAlert message={error} /> }
                 <CardHeader className="flex justify-center items-center">
-                        <CardTitle>Add new task category</CardTitle>        
+                        <CardTitle>Add new task name</CardTitle>        
                 </CardHeader>
                 <CardContent>
                     <form>
@@ -58,10 +64,11 @@ function AddCategory() {
                                 <Input id="name" 
                                     placeholder="Name" 
                                     maxLength={25} 
-                                    value={category}
-                                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => setCategory(e.target.value)}
+                                    value={name}
+                                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                                 />
                             </div>
+                            <ColorPicker height={100} hideAlpha={true} color={color} onChange={setColor} />
                         </div>
                     </form>
                 </CardContent>
