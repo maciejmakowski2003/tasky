@@ -8,11 +8,11 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { TextArea } from '@react-ui-org/react-ui';
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react";
 import DatePicker from "./DatePicker";
 import { format } from "date-fns"
+import Combobox from "./ComboBox";
 import './addingform.css'
 
 function AddTask() {
@@ -40,8 +40,7 @@ function AddTask() {
                     <div className="grid w-full justify-center gap-4">
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="category">Category</Label>
-                            <Input id="category" placeholder="Category" maxLength={30} 
-                            onChange={(e:React.ChangeEvent<HTMLInputElement>) => setCategory(e.target.value)}/>
+                            <Combobox category={category} setCategory={setCategory} />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="task">Task</Label>
