@@ -20,8 +20,7 @@ const signup = async (req, res) => {
             password: bcrypt.hashSync(password, 8)
         });
         const token = createToken(user);
-        res.status(200).send({
-            user: user, 
+        res.status(200).send({ 
             token: token
         })
     }
@@ -47,7 +46,6 @@ const login = async (req, res) => {
 
         const token = createToken(user);
         res.status(200).send({
-            user: user, 
             token: token
         });
     } 

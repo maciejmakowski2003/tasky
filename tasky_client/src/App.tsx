@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import AuthPage from "./components/AuthComponents/AuthPage"
-import LoginCard from "./components/AuthComponents/LoginCard"
-import SignUpCard from "./components/AuthComponents/SignUpCard";
+import Protected from "./components/ProtectedRoutes/Protected";
 import PageContent from "./components/PageComponents/PageContent";
 import NavBar from "./components/PageComponents/NavBar";
 import Home from "./components/HomeComponents/Home";
@@ -11,43 +9,58 @@ import TasksPage from "./components/TasksComponents/TasksPage";
 import CalendarPage from "./components/CalendarComponents/CalendarPage";
 import SiteDoesNotExist from "./components/PageComponents/SiteDoesNotExist";
 import AddEvent from "./components/AddingForms/AddEvent";
+import {useAuth} from "./context/AuthContext";
 
 function App() {
+  const {email, photo, token} = useAuth();
+  
   return (
-    <BrowserRouter>
-      <Routes>
-
-        <Route path="login" element={
-          <AuthPage>
-            <LoginCard />
-          </AuthPage>
-        } />
-
-        <Route path="signup" element={
-          <AuthPage>
-              <SignUpCard />
-          </AuthPage>
-        } />
-
-        <Route path="*" element={
-          <div>
-            <NavBar />
+    <Protected email={email}>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          
+          <Route path="/" element={
             <PageContent>
-              <Routes>
-                <Route path="/" element={<Home />}/>
-                <Route path="/tasks/:id" element={<TasksPage />}/>                 
-                <Route path="/tasks-done/:id" element={<TasksPage />}/>
-                <Route path="/add-task" element={<AddTask />}/> 
-                <Route path="/calendar" element={<CalendarPage />} /> 
-                <Route path="/add-event" element={<AddEvent />} /> 
-                <Route path="*" element={<SiteDoesNotExist />} />            
-              </Routes>
+              <Home />
             </PageContent>
-          </div>
-        } />
+          }/>
 
-      </Routes>
-    </BrowserRouter>
+          <Route path="/tasks/:id" element={
+            <PageContent>
+              <TasksPage />
+            </PageContent>
+          }/>   
+
+          <Route path="/tasks-done/:id" element={
+            <PageContent>
+              <TasksPage />
+            </PageContent>
+          }/>  
+
+          <Route path="/add-task" element={
+            <PageContent>
+              <AddTask />
+            </PageContent>
+          }/>  
+
+          <Route path="/calendar" element={
+            <PageContent>
+              <CalendarPage />
+            </PageContent>
+          }/>
+
+          <Route path="/add-event" element={
+            <PageContent>
+              <AddEvent />
+            </PageContent>
+          }/>
+
+          <Route path="*" element={<SiteDoesNotExist />} />               
+            
+        </Routes>
+      </BrowserRouter>
+    </Protected>
   )
 }
 
