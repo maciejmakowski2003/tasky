@@ -15,40 +15,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
- 
-const categories = [
-  {
-    value: "studies",
-    label: "studies",
-  },
-  {
-    value: "work",
-    label: "work",
-  },
-  {
-    value: "gym",
-    label: "gym",
-  },
-  {
-    value: "toDo",
-    label: "toDo",
-  },
-]
 
 interface ComboboxProps {
     category: string
     setCategory: React.Dispatch<React.SetStateAction<string>>
-    }
+    categories: {id: number, name: string, color: string, userID: number } []
+}
  
-export function Combobox({ category, setCategory }: ComboboxProps) {
-  const [open, setOpen] = useState(false)
- 
+export function Combobox({ category, setCategory, categories }: ComboboxProps) {
+  const [open, setOpen] = useState(false);
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" role="combobox" aria-expanded={open} className="w-[200px] justify-between">
           {category
-            ? categories.find((object) => object.value === category)?.label
+            ? categories?.find((object) => object.name === category)?.name
             : "Select category..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -58,29 +40,30 @@ export function Combobox({ category, setCategory }: ComboboxProps) {
           <CommandInput placeholder="Search category..." />
           <CommandEmpty>No category found.</CommandEmpty>
           <CommandGroup>
-            {categories.map((object) => (
+            {categories?.map((object) => (
               <CommandItem
-                key={object.value}
-                value={object.value}
+                key={object.name}
+                value={object.name}
                 onSelect={(currentValue) => {
-                  setCategory(currentValue === category ? "" : currentValue)
-                  setOpen(false)
+                  setCategory(currentValue === category ? "" : currentValue);
+                  setOpen(false);
                 }}
-                >
+              >
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    category === object.value ? "opacity-100" : "opacity-0"
+                    category === object.name ? "opacity-100" : "opacity-0"
                   )}
                 />
-                {object.label}
+                {object.name}
               </CommandItem>
             ))}
           </CommandGroup>
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
+
 
 export default Combobox

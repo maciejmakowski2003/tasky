@@ -4,6 +4,8 @@ const setHeaders = require('./middleware/setHeaders');
 const db = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -25,6 +27,8 @@ db.sequelize.sync({logging: false});
 //routes 
 app.use(authRoutes);
 app.use(taskRoutes);
+app.use(categoryRoutes);
+app.use(eventRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);

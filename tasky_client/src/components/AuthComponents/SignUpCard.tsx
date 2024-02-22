@@ -17,6 +17,7 @@ import axios from "axios";
 import CookiesManager from "@/helpers/Cookiesmanager";
 import ErrorAlert from "../Alerts/ErrorAlert";
 import SuccessAlert from "../Alerts/SuccessAlert";
+import API_URL from "@/config";
 
 function SignUpCard() {
   const { setToken } = useAuth();
@@ -46,7 +47,7 @@ function SignUpCard() {
     fd.append("email", email);
     fd.append("password", password);
 
-    axios.post("http://localhost:8080/api/auth/signup", fd, {
+    axios.post(API_URL+ "auth/signup", fd, {
       headers: {
         "Content-Type": "application/json",
       },

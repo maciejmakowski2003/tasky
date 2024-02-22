@@ -14,8 +14,6 @@ function AuthProvider({ children }: { children: ReactNode }) {
         setToken(null);
     };
 
-    console.log(token);
-
     useEffect(() => {
         const token = CookiesManager.getCookie("token");
         if (!token) return;

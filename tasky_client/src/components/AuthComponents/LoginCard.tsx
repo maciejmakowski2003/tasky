@@ -17,6 +17,7 @@ import axios from "axios";
 import CookiesManager from "@/helpers/Cookiesmanager";
 import ErrorAlert from "../Alerts/ErrorAlert";
 import SuccessAlert from "../Alerts/SuccessAlert";
+import API_URL from "@/config";
 
 function LoginCard() {
 
@@ -38,7 +39,7 @@ function LoginCard() {
     fd.append("email", email);
     fd.append("password", password);
 
-    axios.post("http://localhost:8080/api/auth/login", fd, {
+    axios.post(API_URL+ "auth/login", fd, {
       headers: {
         "Content-Type": "application/json",
       },
