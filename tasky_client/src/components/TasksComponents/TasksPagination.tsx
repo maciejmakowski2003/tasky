@@ -59,7 +59,7 @@ function TasksPagination({ size, pageId, url }: TasksPaginationProps) {
                     </PaginationItem>
                     {getPageNumbers(size, pageId).map((page) => 
                         <PaginationItem key={page}>
-                            {page === 0 ? <PaginationEllipsis /> : <PaginationLink href={`${url}/${page}`}>{page}</PaginationLink>}
+                            {page === 0 ? <PaginationEllipsis /> : <PaginationLink href={`${url}/${page}`} isActive={page === pageId} >{page}</PaginationLink>}
                         </PaginationItem>
                     )}
                     <PaginationItem>

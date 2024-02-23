@@ -1,5 +1,6 @@
 const {Task, Category} = require('../config/db'); 
 
+
 const createTask = async (req, res) => {
     try {
         const {categoryName, taskName, date} = req.body;
@@ -17,17 +18,29 @@ const createTask = async (req, res) => {
 const getTasks = async (req, res) => {
     try {
         const tasks = await Task.findAll({where: {userID: req.userID}});
-        res.status(200).json(tasks);
+        const tasksArray = [];
+        for (let task of tasks) {
+            const category = await Category.findOne({where: {id: task.categoryID}});
+            tasksArray.push({
+                id: task.id,
+                name: task.name,
+                doItUntil: task.doItUntil,
+                done: task.done,
+                category: category.name,
+                color: category.color
+            });
+        }
+        res.status(200).json(tasksArray);
     } catch (error) {
         res.status(500).json({message: error.message});
     }
 }
 
-const updateTaskStatus =async (req, res) => {
+const updateTaskStatus = async (req, res) => {
     try {
         const {id} = req.params;
-        const {done} = req.body;
-        const task = await Task.update({done}, {where: {id, userID: req.userID}});
+        const task = await Task.findOne({where: {id, userID: req.userID}});
+        task.update({done: !task.done})
         res.status(200).json(task);
     } catch (error) {
         res.status(500).json({message: error.message});

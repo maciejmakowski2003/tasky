@@ -1,4 +1,4 @@
-const {Category} = require('../config/db');
+const {Category, Task} = require('../config/db');
 
 const createCategory = async (req, res) => {
     const {name, color} = req.body;
@@ -36,6 +36,10 @@ const removeCategory = async (req, res) => {
         const category = await Category.findOne({where: {name, userID: req.userID}});
         if (!category) {
             return res.status(404).send({message: 'Category not found!'});
+        }
+        const tasks = await Task.findAll({where: {categoryID: category.id}});
+        if(tasks.length > 0) {
+            return res.status(400).send({message: 'Category has tasks!'});
         }
         await category.destroy();
         res.status(200).send({message: 'Category removed!'});

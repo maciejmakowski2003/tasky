@@ -6,19 +6,24 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-function Chart() {
+interface IChart {
+  toDo: number;
+  done: number;
+}
+
+function Chart({chartData}: {chartData: IChart}) {
   const data = [
     {
       label: 'Done',
-      value: 30,
+      value: chartData.done,
     },
     {
       label: 'To Do',
-      value: 20,
+      value: chartData.toDo,
     }
   ]
   return (
-    <Card className='w-[300px] h-[300px]'>
+    <Card className='w-[300px] h-[350px]'>
       <CardHeader>
         <CardTitle className='flex justify-center'>Tasks progress</CardTitle>
       </CardHeader>
