@@ -3,15 +3,24 @@ import {
   } from "@/components/ui/card"
 import TaskCard from "./TaskCard";
 
-interface TasksProps {
-    numberOfTasks: number;
+interface ITask {
+    id: number;
+    name: string;
+    doItUntil: string;
+    done: boolean;
+    category: string;
+    color: string;
 }
 
-function Tasks({ numberOfTasks }: TasksProps) {
+interface IProps {
+    tasks: ITask[];
+}
+
+function Tasks({ tasks }: IProps) {
     return (
         <CardContent className="p-0 px-9 flex flex-wrap flex-row items-center">
-            {Array.from({ length: numberOfTasks }, (_, index) => (
-                <TaskCard key={index} />
+            {tasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
             ))}
         </CardContent>
     )
