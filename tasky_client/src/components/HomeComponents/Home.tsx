@@ -15,9 +15,17 @@ interface ITask {
   color: string;
 }
 
+interface IEvent {
+  id: number;
+  name: string;
+  from: string;
+  to: string;
+  useID: number;
+}
+
 function Home() {
   const {token} = useAuth()
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState<IEvent[]>([])
   const [tasks, setTasks] = useState<ITask[]>([])
 
   useEffect(() => {
@@ -28,6 +36,18 @@ function Home() {
     })
     .then((res) => {
       setTasks(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+    axios.get(API_URL + "events", {
+      headers: {
+        "x-access-token": `${token}`
+      }
+    })
+    .then((res) => {
+      setEvents(res.data)
     })
     .catch((err) => {
       console.log(err)
@@ -43,6 +63,12 @@ function Home() {
     return new Date(a.doItUntil).getTime() - new Date(b.doItUntil).getTime()
   }).slice(0,3)
 
+  const upcomingEvents = events.filter((event) => { 
+    return new Date(event.from).getTime() > new Date().getTime()
+  }).sort((a,b) => {
+    return new Date(a.from).getTime() - new Date(b.from).getTime()
+  }).slice(0,3)
+
   return (
     <div className='flex flex-col'>
         <div className='mb-10 mr-10 flex flex-row'>
@@ -50,7 +76,7 @@ function Home() {
         </div>
         <div className='mr-10 flex flex-row'>
             <div className='mr-10'>
-              <UpcomingEvents/>
+              <UpcomingEvents upcomingEvents={upcomingEvents}/>
             </div>
             <Chart chartData={chartData}/>
         </div>
