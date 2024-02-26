@@ -10,6 +10,7 @@ import CalendarPage from "./components/CalendarComponents/CalendarPage";
 import SiteDoesNotExist from "./components/PageComponents/SiteDoesNotExist";
 import AddEvent from "./components/AddingForms/AddEvent";
 import {useAuth} from "./context/AuthContext";
+import Account from "./components/AccountComponents/Account";
 
 function App() {
   const {email} = useAuth();
@@ -54,6 +55,10 @@ function App() {
             <PageContent>
               <AddEvent />
             </PageContent>
+          }/>
+
+          <Route path="/account" element={
+            <Account />
           }/>
 
           <Route path="*" element={<SiteDoesNotExist />} />               

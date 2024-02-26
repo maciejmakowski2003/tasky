@@ -20,7 +20,7 @@ interface IUpcomingEvents {
 
 function UpcomingEvents({upcomingEvents}: IUpcomingEvents) {
   return (
-    <Card className='w-[400px] h-auto'>
+    <Card className='w-[400px] h-[350px]'>
       <CardHeader>
         <CardTitle className='flex justify-center'>Upcoming events:</CardTitle>
       </CardHeader>
