@@ -19,6 +19,7 @@ interface IUpcomingEvents {
 }
 
 function UpcomingEvents({upcomingEvents}: IUpcomingEvents) {
+  console.log(upcomingEvents)
   return (
     <Card className='w-[400px] h-[350px]'>
       <CardHeader>

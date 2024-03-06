@@ -63,9 +63,7 @@ function Home() {
     return new Date(a.doItUntil).getTime() - new Date(b.doItUntil).getTime()
   }).slice(0,3)
 
-  const upcomingEvents = events.filter((event) => { 
-    return new Date(event.from).getTime() > new Date().getTime()
-  }).sort((a,b) => {
+  const upcomingEvents = events.sort((a,b) => {
     return new Date(a.from).getTime() - new Date(b.from).getTime()
   }).slice(0,3)
 
